@@ -22,6 +22,7 @@ function searchTable () {
     if (date)  {
         var filterdata = tableData.filter(row => row.datetime === date);
     } 
+    console.log(filterdata);
     createTable(filterdata);
 }
 
