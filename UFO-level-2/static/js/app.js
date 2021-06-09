@@ -23,6 +23,10 @@ when the search date button is pressed */
 
 function searchTable () {
     var date = d3.select("#datetime").property("value");
+    var city = d3.select("#city").property("value");
+    var state = d3.select("#state").property("value");
+    var country = d3.select("country").property("value");
+    var shape = d3.select("#shape").property("value");
     if (date)  {
         var filterdata = tableData.filter(row => row.datetime === date);
     } 
