@@ -22,25 +22,31 @@ createTable(tableData);
 when the search date button is pressed */
 
 function searchTable () {
+    //Create multi
     var date = d3.select("#datetime").property("value");
     var city = d3.select("#city").property("value");
     var state = d3.select("#state").property("value");
     var country = d3.select("#country").property("value");
     var shape = d3.select("#shape").property("value");
-    if (date.length > 0)  {
+    if (date.length)  {
         var filterdata = tableData.filter(row => row.datetime === date);
+        console.log(filterdata);
     }
     if (city)  {
         var filterdata = tableData.filter(row => row.city === city);
+        console.log(filterdata);
     } 
     if (state)  {
         var filterdata = tableData.filter(row => row.state === state);
+        console.log(filterdata);
     } 
     if (country)  {
         var filterdata = tableData.filter(row => row.country === country);
+        console.log(filterdata);
     } 
     if (shape)  {
         var filterdata = tableData.filter(row => row.shape === shape);
+        console.log(filterdata);
     } 
     console.log(filterdata);
     createTable(filterdata);
