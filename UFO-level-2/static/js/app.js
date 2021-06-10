@@ -25,9 +25,9 @@ function searchTable () {
     //Create multi
     var date = d3.select("#datetime").property("value");
     var city = d3.select("#city").property("value").toLowerCase();
-    var state = d3.select("#state").property("value");
-    var country = d3.select("#country").property("value");
-    var shape = d3.select("#shape").property("value");
+    var state = d3.select("#state").property("value").toLowerCase();
+    var country = d3.select("#country").property("value").toLowerCase();
+    var shape = d3.select("#shape").property("value").toLowerCase();
     if (date.length > 0)  {
         var filterdata = tableData.filter(row => row.datetime === date);
         console.log(filterdata);
