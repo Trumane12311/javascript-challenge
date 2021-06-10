@@ -20,9 +20,7 @@ createTable(tableData);
 
 /* Create a function to filter the javascript file
 when the search date button is pressed */
-button.on("click", () => {
-    d3.event.preventDefault();
-})
+
 function searchTable () {
     //Create multi
     var inputDate = d3.select("#datetime").property("value").trim();
@@ -31,23 +29,23 @@ function searchTable () {
     var inputCountry = d3.select("#country").property("value").toLowerCase();
     var inputShape = d3.select("#shape").property("value").toLowerCase();
     if (inputDate.length > 0)  {
-        var filterdata = tableData.filter(tableData => tableData.datetime === inputDate);
+        var filterdata = tableData.filter(row => row.datetime === inputDate);
         console.log(filterdata);
         }
     if (inputCity.length > 0)  {
-        var filterdata = tableData.filter(tableData => tableData.city === inputCity);
+        var filterdata = tableData.filter(row => row.city === inputCity);
         console.log(filterdata);
     } 
     if (inputState.length > 0)  {
-        var filterdata = tableData.filter(tableData => tableData.state === inputState);
+        var filterdata = tableData.filter(row => row.state === inputState);
         console.log(filterdata);
     } 
     if (inputCountry.length > 0)  {
-        var filterdata = tableData.filter(tableData => tableData.country === inputCountry);
+        var filterdata = tableData.filter(row => row.country === inputCountry);
         console.log(filterdata);
     } 
     if (inputShape.length > 0)  {
-        var filterdata = tableData.filter(tableData => tableData.shape === inputShape);
+        var filterdata = tableData.filter(row => row.shape === inputShape);
         console.log(filterdata);
     } 
     createTable(filterdata);
