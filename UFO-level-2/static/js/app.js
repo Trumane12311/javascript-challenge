@@ -22,7 +22,9 @@ createTable(tableData);
 when the search date button is pressed */
 button.on("click", () => {
     d3.event.preventDefault();
-
+})
+function searchTable () {
+    //Create multi
     var inputDate = d3.select("#datetime").property("value").trim();
     var inputCity = d3.select("#city").property("value").toLowerCase().trim();
     var inputState = d3.select("#state").property("value").toLowerCase();
@@ -48,22 +50,9 @@ button.on("click", () => {
         var filterdata = tableData.filter(tableData => tableData.shape === inputShape);
         console.log(filterdata);
     } 
-
+    createTable(filterdata);
+}
 // Call the function to run the filter when the search button is "clicked" by the user
-$tbody.html("")
+d3.selectAll("#filter-btn").on("click", searchTable);
 
-let response = {
-    inputDate, inputCity, inputCombinedData
-}
-// Top if only works for filtering the date
-// Need to accommodate for combining multiple filters, needed to create a new var for it
-if(response.filterCombinedData.length !== 0) {
-    addData(filterCombinedData);
-}
-    else if(response.filterCombinedData.length === 0 && ((response.filterDate.length !== 0 || response.filterCity.length !== 0))) {
-        addData(filterDate) || addData(filterCity);
-    }
-    else {
-        $tbody.append("tr").append("td").text("No results");
-    }
-})
+createTable(tableData);
