@@ -49,7 +49,6 @@ button.on("click", () => {
         console.log(filterdata);
     } 
 
-})
 // Call the function to run the filter when the search button is "clicked" by the user
 $tbody.html("")
 
@@ -61,19 +60,10 @@ let response = {
 if(response.filterCombinedData.length !== 0) {
     addData(filterCombinedData);
 }
-
-// else if(response.filterCity.length !== 0){
-//     addData(filterCity);
-// }
     else if(response.filterCombinedData.length === 0 && ((response.filterDate.length !== 0 || response.filterCity.length !== 0))) {
         addData(filterDate) || addData(filterCity);
     }
-
-    // else if(response.filterCombinedDateState.length === 0 && ((response.filterDate.length !== 0 || response.filterState.length !== 0))) {
-    //     addData(filterDate) || addData(filterState);
-    // }
-
     else {
-        $tbody.append("tr").append("td").text("No Sightings Here...Move On...");
+        $tbody.append("tr").append("td").text("No results");
     }
 })
