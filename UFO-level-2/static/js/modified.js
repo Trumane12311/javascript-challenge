@@ -25,7 +25,7 @@ var filter = {}
 function searchTable () {
     //Create multi search
     var inputData = d3.select(this);
-    var inputValue = inputData.property('value').trim();
+    var inputValue = inputData.property('value').toLowerCase().trim();
     var inputID = inputData.attr('id');
     if (inputData) {
         filter[inputID] = inputValue;
@@ -40,10 +40,6 @@ function filterData () {
         fildata = tableData.filter(row => row[key] === value);
     })
         createTable(fildata)
-    if (fildata == null) {
-        window.confirm("No Sightings Claimed");
-        console.log("I didn't run")
-    }
 }
     
 //     if (inputDate.length > 0)  {
@@ -75,10 +71,4 @@ function refreshTable () {
     console.log("I'm working");
     createTable(tableData);
 }
-
-function clearTable () {
-
-}
 d3.selectAll("#filter-btn").on("click", refreshTable);
-
-createTable(tableData);
