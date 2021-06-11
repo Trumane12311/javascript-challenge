@@ -20,38 +20,55 @@ createTable(tableData);
 
 /* Create a function to filter the javascript file
 when the search date button is pressed */
+var filter = {}
 
 function searchTable () {
-    //Create multi
-    var inputDate = d3.select("#datetime").property("value").trim();
-    var inputCity = d3.select("#city").property("value").toLowerCase().trim();
-    var inputState = d3.select("#state").property("value").toLowerCase();
-    var inputCountry = d3.select("#country").property("value").toLowerCase();
-    var inputShape = d3.select("#shape").property("value").toLowerCase();
-    
-    if (inputDate.length > 0)  {
-        var filterdata = tableData.filter(row => row.datetime === inputDate);
-        console.log(filterdata);
-        }
-    if (inputCity.length > 0)  {
-        var filterdata = tableData.filter(row => row.city === inputCity);
-        console.log(filterdata);
+    //Create multi search
+    var inputData = d3.select(this);
+    var inputValue = inputData.property('value').toLowerCase().trim();
+    var inputID = inputData.attr('id');
+    if (inputData) {
+        filter[inputID] = inputValue;
+    }
+    else {
+        delete filter[inputID];
     } 
-    if (inputState.length > 0)  {
-        var filterdata = tableData.filter(row => row.state === inputState);
-        console.log(filterdata);
-    } 
-    if (inputCountry.length > 0)  {
-        var filterdata = tableData.filter(row => row.country === inputCountry);
-        console.log(filterdata);
-    } 
-    if (inputShape.length > 0)  {
-        var filterdata = tableData.filter(row => row.shape === inputShape);
-        console.log(filterdata);
-    } 
-    createTable(filterdata);
+    filterData ();
 }
+function filterData () {
+    Object.entries(filter).forEach(([key, value])=> {
+        fildata = tableData.filter(row => row[key] === value);
+    })
+        createTable(fildata)
+}
+    
+//     if (inputDate.length > 0)  {
+//         var filterdata = tableData.filter(row => row.datetime === inputDate);
+//         console.log(filterdata);
+//         }
+//     if (inputCity.length > 0)  {
+//         var filterdata = tableData.filter(row => row.city === inputCity);
+//         console.log(filterdata);
+//     } 
+//     if (inputState.length > 0)  {
+//         var filterdata = tableData.filter(row => row.state === inputState);
+//         console.log(filterdata);
+//     } 
+//     if (inputCountry.length > 0)  {
+//         var filterdata = tableData.filter(row => row.country === inputCountry);
+//         console.log(filterdata);
+//     } 
+//     if (inputShape.length > 0)  {
+//         var filterdata = tableData.filter(row => row.shape === inputShape);
+//         console.log(filterdata);
+//     } 
+//     createTable(filterdata);
+// }
 // Call the function to run the filter when the search button is "clicked" by the user
-d3.selectAll("#filter-btn").on("click", searchTable);
+d3.selectAll("input").on("change", searchTable);
 
-createTable(tableData);
+function refreshTable () {
+    console.log("I'm working");
+    createTable(tableData);
+}
+d3.selectAll("#filter-btn").on("click", refreshTable);
