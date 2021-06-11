@@ -28,6 +28,7 @@ function searchTable () {
     var inputState = d3.select("#state").property("value").toLowerCase();
     var inputCountry = d3.select("#country").property("value").toLowerCase();
     var inputShape = d3.select("#shape").property("value").toLowerCase();
+    
     if (inputDate.length > 0)  {
         var filterdata = tableData.filter(row => row.datetime === inputDate);
         console.log(filterdata);
